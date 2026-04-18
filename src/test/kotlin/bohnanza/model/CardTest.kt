@@ -2,10 +2,11 @@ package bohnanza.model
 
 import org.junit.jupiter.api.Test
 import org.junit.jupiter.api.Assertions.*
+import bohnanza.model.Card
 
 class CardTest {
 
-    @Test
+    @org.junit.jupiter.api.Test
     fun getCoinsTest() {
         val prices = intArrayOf(3, 5, 7, 8)
         val card = Card(1, BeanType.COFFEE_BEAN, prices)

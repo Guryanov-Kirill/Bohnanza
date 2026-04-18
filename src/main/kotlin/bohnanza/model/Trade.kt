@@ -12,7 +12,7 @@ class Trade(
     }
 
     fun accept() {
-        TODO("Установить accepted = true и запустить передачу карт)
+        TODO("Установить accepted = true и запустить передачу карт")
     }
 
     fun reject() {
