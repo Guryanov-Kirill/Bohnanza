@@ -12,10 +12,12 @@ class Trade(
     }
 
     fun accept() {
-        TODO("Установить accepted = true и запустить передачу карт")
+        accepted = true
     }
 
     fun reject() {
-        TODO("Установить accepted = false и очистить списки предложений")
+        accepted = false
+        offeredCards.clear()
+        requestedCards.clear()
     }
 }

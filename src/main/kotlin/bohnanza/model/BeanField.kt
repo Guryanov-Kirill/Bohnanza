@@ -2,22 +2,33 @@ package bohnanza.model
 
 class BeanField (
     val fieldIndex: Int,
-    var beantype: BeanType,
-    var count: Int
+    var beanType: BeanType? = null,
+    var firstCard: Card? = null,
+    var count: Int = 0
 ) {
     fun plant(card: Card) {
-        TODO("посадка боба")
+        if (canAccept(card)) {
+            if (isEmpty()){
+                firstCard = card
+                beanType = card.beanType
+            }
+            count++
+        }
     }
 
     fun harvest(): Int {
-        TODO("расчет монет и очистка поля")
+        var coins = firstCard?.getCoinsFor(count) ?: 0
+        beanType = null
+        firstCard = null
+        count = 0
+        return coins
     }
 
     fun isEmpty(): Boolean {
-        TODO()
+        return count == 0
     }
 
     fun canAccept(card: Card): Boolean {
-        TODO("Проверка: можно ли посадить эту карту на это поле")
+        return isEmpty() || beanType == card.beanType
     }
 }

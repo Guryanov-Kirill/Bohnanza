@@ -5,20 +5,28 @@ class Player(
     val name: String,
     var coins: Int = 0,
     val handCards: MutableList<Card> = mutableListOf(),
-    var hasExtraField: Boolean = false
+    var hasExtraField: Boolean = false,
 ) {
-    // Список грядок игрока
-    val beanFields: List<BeanField> = TODO()
+    val beanField: List<BeanField> = listOf(
+        BeanField(0),
+        BeanField(1),
+        BeanField(2)
+    )
 
     fun addCoins(n: Int) {
-        TODO("Прибавление монет")
+        coins += n
     }
 
     fun buyExtraField(): Boolean {
-        TODO("Покупка дополнитльного поля")
+        if (coins > 2 && !hasExtraField) {
+            coins -= 3
+            hasExtraField = true
+            return true
+        }
+        return false
     }
 
     fun getHandSize(): Int {
-        TODO("Количество карт в руке")
+        return handCards.size
     }
 }

@@ -6,22 +6,38 @@ class Deck(
     var reshuffleCount: Int = 0
 ) {
     fun shuffle() {
-        TODO("Перемешать список карт")
+        cards.shuffle()
     }
 
     fun draw(n: Int): List<Card> {
-        TODO("Выдать n карт")
+        if (cards.size >= n) {
+            val takenCards = cards.take(n)
+            repeat(takenCards.size) { cards.removeAt(0) }
+            return takenCards
+        } else if (!isThirdCycle()){
+            reshuffle()
+            return draw(n)
+        } else {
+            val copy = cards.toList()
+            cards.clear()
+            return copy
+        }
     }
 
     fun discard(card: Card) {
-        TODO("Положить карту в сброс")
+        discardPile.add(card)
     }
 
     fun reshuffle() {
-        TODO("Перемешиваем карты и кладём в колоду")
+        repeat(discardPile.size){
+            cards.add(discardPile[0])
+            discardPile.removeAt(0)
+        }
+        cards.shuffle()
+        reshuffleCount++
     }
 
     fun isThirdCycle(): Boolean {
-        TODO("Проверяет круг игры")
+        return reshuffleCount >= 3
     }
 }

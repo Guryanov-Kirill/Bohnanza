@@ -1,7 +1,9 @@
 package bohnanza.model
 
 data class Card (
-    val id: Int, val beanType: BeanType, val coinValue: IntArray
+    val id: Int,
+    val beanType: BeanType,
+    val coinValue: List<Int>
 ) {
     fun getCoinsFor(count: Int): Int {
         for (i in (coinValue.size - 1 downTo 0)) {
