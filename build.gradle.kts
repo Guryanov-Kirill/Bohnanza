@@ -1,19 +1,21 @@
 plugins {
-    kotlin("jvm") version "1.9.22"
-    application
+    kotlin("jvm") version "1.9.24"
 }
 
 group = "bohnanza"
-version = "1.0"
+version = "1.0-SNAPSHOT"
 
 repositories {
     mavenCentral()
 }
 
 dependencies {
+    // Kotlin
     implementation(kotlin("stdlib"))
-    testImplementation(kotlin("test"))
-    testImplementation("org.junit.jupiter:junit-jupiter:5.10.1")
+
+    // JUnit 5
+    testImplementation(platform("org.junit:junit-bom:5.10.2"))
+    testImplementation("org.junit.jupiter:junit-jupiter")
     testRuntimeOnly("org.junit.platform:junit-platform-launcher")
 }
 
@@ -23,4 +25,8 @@ tasks.test {
 
 application {
     mainClass.set("bohnanza.MainKt")
+}
+
+kotlin {
+    jvmToolchain(17)
 }
