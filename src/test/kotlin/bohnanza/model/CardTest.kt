@@ -8,7 +8,7 @@ class CardTest {
 
     @org.junit.jupiter.api.Test
     fun getCoinsTest() {
-        val prices = intArrayOf(3, 5, 7, 8)
+        val prices = listOf(3, 5, 7, 8)
         val card = Card(1, BeanType.COFFEE_BEAN, prices)
 
         // Меньше минимума
