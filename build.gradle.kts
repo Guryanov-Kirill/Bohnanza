@@ -1,8 +1,9 @@
 plugins {
     kotlin("jvm") version "1.9.24"
+    application
 }
 
-group = "org.example"
+group = "bohnanza"
 version = "1.0-SNAPSHOT"
 
 repositories {
@@ -21,6 +22,10 @@ dependencies {
 
 tasks.test {
     useJUnitPlatform()
+}
+
+application {
+    mainClass.set("bohnanza.MainKt")
 }
 
 kotlin {
