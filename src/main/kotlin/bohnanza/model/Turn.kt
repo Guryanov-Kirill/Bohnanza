@@ -10,11 +10,21 @@ class Turn (
 
     fun plantCard(fieldIndex: Int, card: Card) {
         require(player.handCards.contains(card)) { "Карта не найдена в руке игрока" }
-
+        require(card == player.handCards[0]) { "Можно сажать только первую карту из руки" }
+        require(plantedThisPhase < 2) { "Можно посадить не более двух карт за фазу" }
         val move = PlantMove(player, card, fieldIndex)
         require(move.validate()) { "Невозможно посадить карту на это поле" }
         move.execute()
         player.handCards.remove(card)
+        plantedThisPhase++
+    }
+
+    fun plantOpenCard(card: Card, fieldIndex: Int) {
+        require(openCards.contains(card)) { "Карта не найдена среди открытых карт" }
+        val move = PlantMove(player, card, fieldIndex)
+        require(move.validate()) { "Невозможно посадить карту на это поле" }
+        move.execute()
+        openCards.remove(card)
     }
 
     fun harvestField(fieldIndex: Int): List<Card> {
@@ -35,22 +45,6 @@ class Turn (
 
     fun drawThreeCards() {
         player.handCards.addAll(deck.draw(3))
-    }
-
-    fun plantOpenCard(card: Card, fieldIndex: Int) {
-        require(openCards.contains(card)) { "Карта не найдена среди открытых карт" }
-        if (plantedThisPhase == 0) {
-            require(card == player.handCards[0]) { "Первой нужно сажать первую карту из руки" }
-        }
-        if (plantedThisPhase == 1) {
-            require(card == player.handCards[0]) { "Второй можно сажать только первую карту из руки" }
-        }
-        val move = PlantMove(player, card, fieldIndex)
-        require(move.validate()) { "Невозможно посадить карту на это поле" }
-        if (move.validate()) {
-            move.execute()
-            openCards.remove(card)
-        }
     }
 
     fun nextPhase(){
