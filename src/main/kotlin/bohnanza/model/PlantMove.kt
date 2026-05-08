@@ -3,8 +3,7 @@ package bohnanza.model
 class PlantMove (
     val player: Player,
     val card: Card,
-    val fieldIndex: Int,
-    val forced: Boolean = true
+    val fieldIndex: Int
 ): Move {
     private fun fieldIndexCheck(index: Int): Boolean {
         if (index == 2) {
@@ -14,10 +13,8 @@ class PlantMove (
     }
 
     override fun validate(): Boolean {
-        if (forced) {
-            return fieldIndexCheck(fieldIndex)
-        }
-        return fieldIndexCheck(fieldIndex) && player.beanField[fieldIndex].canAccept(card)
+        if (!fieldIndexCheck(fieldIndex)) return false
+        return player.beanField[fieldIndex].canAccept(card)
     }
 
     override fun execute(): List<Card> {

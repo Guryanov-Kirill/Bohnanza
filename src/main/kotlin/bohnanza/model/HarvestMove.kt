@@ -13,9 +13,9 @@ class HarvestMove (
             val coinsEarned = player.beanField[fieldIndex].coinsFromField()
             val cards = player.beanField[fieldIndex].cardsFromField().toMutableList()
             val coinsForPlayer = cards.take(coinsEarned)
-            for (card in coinsForPlayer) {cards.remove(card)}
+            val discardCards = cards.drop(coinsEarned)
             player.coinCards.addAll(coinsForPlayer)
-            return cards
+            return discardCards
         }
         return emptyList()
     }

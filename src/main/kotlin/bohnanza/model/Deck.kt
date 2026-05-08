@@ -40,4 +40,8 @@ class Deck(
     fun isThirdCycle(): Boolean {
         return reshuffleCount >= 3
     }
+
+    fun startDeckFactory() {
+        cards = DeckFactory().createDeck().toMutableList()
+    }
 }
