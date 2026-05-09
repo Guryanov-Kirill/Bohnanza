@@ -23,8 +23,8 @@ class GameViewModel {
         currentTurn = game?.currentTurn
     }
 
-    fun plantCard(fieldIndex: Int, card: Card, forced: Boolean) {
-        currentTurn?.plantCard(fieldIndex, card, forced)
+    fun plantCard(fieldIndex: Int, card: Card) {
+        currentTurn?.plantCard(fieldIndex, card)
     }
 
     fun harvestField(fieldIndex:Int): List<Card> {
