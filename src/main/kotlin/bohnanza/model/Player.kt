@@ -18,6 +18,7 @@ class Player(
     }
 
     fun buyExtraField(): List<Card> {
+        if (hasExtraField) throw IllegalStateException("Третье поле уже куплено")
         if (coins() > 2 && !hasExtraField) {
             val pay = coinCards.take(3)
             for (card in pay) {coinCards.remove(card)}
