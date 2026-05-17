@@ -22,9 +22,9 @@ fun StartScreen(viewModel: GameViewModel) {
     Box(modifier = Modifier.fillMaxSize(), contentAlignment = Alignment.Center) {
         Column(horizontalAlignment = Alignment.CenterHorizontally) {
             if (!flagPlayer) {
+                Text("Количество игроков: ${playerCount}")
                 Button(onClick = { if (playerCount > 2) playerCount-- }) { Text("-") }
                 Button(onClick = { if (playerCount < 7) playerCount++ }) { Text("+") }
-                Text("Количество игроков: ${playerCount}")
                 Button(onClick = {
                     names = List(playerCount) { "" }
                     flagPlayer = true
@@ -40,7 +40,9 @@ fun StartScreen(viewModel: GameViewModel) {
                         }
                     )
                 }
-                Button(onClick = { viewModel.startGame(names) }) {
+                Button(onClick = { flagPlayer = false }) { Text("Назад") }
+                Button(onClick = { viewModel.startGame(names)
+                    val finalNames = names.map { it.ifBlank { "Игрок" } }}) {
                     Text("Начать игру")
                 }
             }
