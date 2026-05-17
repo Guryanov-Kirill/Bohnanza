@@ -8,6 +8,7 @@ import bohnanza.viewmodel.GameViewModel
 import androidx.compose.runtime.remember
 import StartScreen
 import GameScreen
+import bohnanza.data.Database
 
 
 @Composable
@@ -24,6 +25,7 @@ fun App() {
 }
 
 fun main()  = application {
+    Database.init()
     Window(onCloseRequest = ::exitApplication, title = "Bohnanza Game") {
         App()
     }

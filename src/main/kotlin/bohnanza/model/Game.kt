@@ -1,5 +1,7 @@
 package bohnanza.model
 
+import bohnanza.data.Database
+
 class Game (
     val players: List<Player>,
     val deck: Deck,
@@ -55,6 +57,7 @@ class Game (
 
     fun saveGameHistory() {
         GameHistory.add(this)
+        Database.saveGame(this)
     }
 
     fun getWinner(): List<Player> {

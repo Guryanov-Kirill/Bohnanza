@@ -25,6 +25,8 @@ dependencies {
     testImplementation("org.junit.jupiter:junit-jupiter")
     testRuntimeOnly("org.junit.platform:junit-platform-launcher")
     testImplementation(kotlin("test"))
+
+    implementation("org.xerial:sqlite-jdbc:3.45.1.0")
 }
 
 tasks.test {
